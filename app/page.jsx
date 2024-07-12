@@ -2,8 +2,9 @@ import React from "react";
 import TicketCard from "./(components)/TicketCard";
 
 const getTickets = async () => {
+  const baseURL = process.env.BASE_URL;
   try {
-    const res = await fetch("https://ticket-management-zeta.vercel.app/api/Tickets", {
+    const res = await fetch(`${baseURL}/api/Tickets`, {
       cache: "no-store",
     });
 
