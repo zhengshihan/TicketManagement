@@ -16,7 +16,6 @@ export const authOptions = {
         try {
           await connectMongoDB();
           const user = await User.findOne({ email });
-
           if (!user) {
             return null;
           }
@@ -40,6 +39,16 @@ export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) token.role = user.role;
+      return token;
+    },
+    async session({ session, token }) {
+      if (session?.user) session.user.role = token.role;
+      return session;
+    },
   },
 };
 

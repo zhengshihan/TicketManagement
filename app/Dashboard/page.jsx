@@ -1,5 +1,7 @@
 import React from "react";
 import TicketCard from "@/app/(components)/TicketCard";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 const getTickets = async () => {
   const baseURL = process.env.BASE_URL;
@@ -19,6 +21,11 @@ const getTickets = async () => {
 };
 
 const Dashboard = async () => {
+  const session = await getServerSession(authOptions);
+
+  if (session?.user.role !== "admin") {
+    return <p>You are not authorized to view this page!</p>;
+  }
   const data = await getTickets();
 
   // Make sure we have tickets needed for production build.
