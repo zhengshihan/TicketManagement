@@ -10,17 +10,21 @@ const Nav = async () => {
 
   return (
     <nav className="flex justify-between bg-nav p-4">
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-12">
         <Link href="/">
-          <FontAwesomeIcon icon={faHome} className="icon" />
+          <FontAwesomeIcon icon={faHome} className="text-icon fa-2x" />
         </Link>
         <Link href="/TicketPage/new">
-          <FontAwesomeIcon icon={faTicket} className="icon" />
+          <FontAwesomeIcon icon={faTicket} className="text-icon fa-2x" />
         </Link>
       </div>
-      <div>
-        <p className=" text-default-text">{session?.user?.email}</p>
-        <LoginOut />
+      <div className="flex items-center space-x-4">
+        {session ? (
+          <>
+            <p className="text-white text-lg">{session.user.email}</p>
+            <LoginOut />
+          </>
+        ) : null}
       </div>
     </nav>
   );

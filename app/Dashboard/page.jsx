@@ -24,8 +24,20 @@ const Dashboard = async () => {
   const session = await getServerSession(authOptions);
 
   if (session?.user.role !== "admin") {
-    return <p>You are not authorized to view this page!</p>;
+    return (
+      <div className="flex justify-center items-center h-screen bg-gray-100">
+        <div className="text-center p-6 bg-red-100 border border-red-400 text-red-700 rounded">
+          <p className="text-2xl font-bold mb-4">
+            You are not authorized to view this page!
+          </p>
+          <p className="text-lg">
+            Please contact your administrator for access.
+          </p>
+        </div>
+      </div>
+    );
   }
+
   const data = await getTickets();
 
   // Make sure we have tickets needed for production build.
