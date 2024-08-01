@@ -27,7 +27,8 @@ export default function LoginForm() {
         return;
       }
 
-      router.replace("Dashboard");
+      router.replace("Home");
+      router.refresh();
     } catch (error) {
       console.log(error);
     }
@@ -43,7 +44,7 @@ export default function LoginForm() {
             onChange={(e) => setEmail(e.target.value)}
             type="text"
             placeholder="Email"
-            className="text-white"
+            className="text-black"
           />
           <input
             onChange={(e) => setPassword(e.target.value)}
@@ -58,10 +59,12 @@ export default function LoginForm() {
               {error}
             </div>
           )}
-
-          <Link className="text-sm mt-3 text-right" href={"/Register"}>
-            Don't have an account? <span className="underline">Register</span>
-          </Link>
+          <div>
+            <span>Don't have an account? </span>
+            <Link className="text-sm mt-3 text-right" href={"/Register"}>
+              <span className="underline"> Register</span>
+            </Link>
+          </div>
         </form>
       </div>
     </div>

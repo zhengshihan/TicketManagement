@@ -1,4 +1,10 @@
-import { faHome, faTicket } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHome,
+  faTicket,
+  faTachometerAlt,
+  faTicketAlt,
+  faPaperPlane,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import LoginOut from "./LoginOut";
@@ -11,12 +17,27 @@ const Nav = async () => {
   return (
     <nav className="flex justify-between bg-nav p-4">
       <div className="flex items-center space-x-12">
-        <Link href="/">
+        <Link href="/Home">
           <FontAwesomeIcon icon={faHome} className="text-icon fa-2x" />
         </Link>
         <Link href="/TicketPage/new">
-          <FontAwesomeIcon icon={faTicket} className="text-icon fa-2x" />
+          <FontAwesomeIcon icon={faPaperPlane} className="text-icon fa-2x" />
         </Link>
+        {session?.user.role == "admin" ? (
+          <Link href="/Dashboard">
+            <FontAwesomeIcon
+              icon={faTachometerAlt}
+              className="text-icon fa-2x"
+            />
+          </Link>
+        ) : (
+          <Link href="/UserDashboard">
+            <FontAwesomeIcon
+              icon={faTachometerAlt}
+              className="text-icon fa-2x"
+            />
+          </Link>
+        )}
       </div>
       <div className="flex items-center space-x-4">
         {session ? (

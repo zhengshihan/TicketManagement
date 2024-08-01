@@ -12,6 +12,7 @@ const ticketSchema = new Schema(
     progress: Number,
     status: String,
     active: Boolean,
+    userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
   },
   {
     timestamps: true,

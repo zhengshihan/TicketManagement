@@ -1,4 +1,4 @@
-import EditTicketForm from "@/app/(components)/EditTicketForm";
+import EditTicketForm from "../../(components)/EditTicketForm";
 
 const getTicketById = async (id) => {
   const baseURL = process.env.BASE_URL;

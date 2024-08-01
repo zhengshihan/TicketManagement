@@ -3,12 +3,21 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import {
+  TextField,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@mui/material"; // Import MUI components
 
 export default function RegisterForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [openDialog, setOpenDialog] = useState(false); // State for dialog
 
   const router = useRouter();
 
@@ -51,13 +60,17 @@ export default function RegisterForm() {
       if (res.ok) {
         const form = e.target;
         form.reset();
-        router.push("/");
+        setOpenDialog(true);
       } else {
         console.log("User registration failed.");
       }
     } catch (error) {
       console.log("Error during registration: ", error);
     }
+  };
+  const handleDialogClose = () => {
+    setOpenDialog(false);
+    router.push("/"); // Redirect after dialog is closed
   };
 
   return (
@@ -96,6 +109,17 @@ export default function RegisterForm() {
           </Link>
         </form>
       </div>
+
+      {/* Success Dialog */}
+      <Dialog open={openDialog} onClose={handleDialogClose}>
+        <DialogTitle>Registration Successful</DialogTitle>
+        <DialogContent>You have successfully registered!</DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogClose} color="primary">
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
