@@ -66,6 +66,8 @@ export default function LoginForm() {
             </Link>
           </div>
         </form>
+        <p>(default user: user@gmail.com && password)</p>
+        <p>(default admin: admin@gmail.com && password)</p>
       </div>
     </div>
   );
